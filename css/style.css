@@ -47,6 +47,7 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -57,6 +58,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img {
@@ -239,7 +241,39 @@ section.section--flush {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .nav__links.is-open {
+    display: flex;
+  }
+
+  .nav__link {
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+  }
+
+  .nav__link.active::after {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
 }
 
 .nav__link {
@@ -633,6 +667,7 @@ section.section--flush {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
+  overflow: hidden;
 }
 
 .proof-strip__item {
@@ -1536,6 +1571,16 @@ section.section--flush {
   .about-section__grid,
   .lab-track__header,
   .contact-page__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-hero__photo {
+    min-height: 320px;
+    max-height: 420px;
+  }
+
+  .capability-grid,
+  .product-cards {
     grid-template-columns: 1fr;
   }
 
@@ -1566,6 +1611,46 @@ section.section--flush {
 
   .lab-projects {
     grid-template-columns: 1fr;
+  }
+
+  /* Achievement strip wraps into 3-column grid on tablet */
+  .achievements-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .achievement-strip__divider {
+    display: none;
+  }
+
+  .achievement-stat {
+    padding: 0;
+    min-width: unset;
+  }
+
+  .achievement-stat:first-child {
+    padding-left: 0;
+  }
+
+  /* Proof strip wraps to 2x2 on tablet */
+  .proof-strip {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .proof-strip__item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proof-strip__item:nth-child(1),
+  .proof-strip__item:nth-child(2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proof-strip__item:nth-child(3),
+  .proof-strip__item:nth-child(4) {
+    border-bottom: none;
   }
 }
 
@@ -1606,12 +1691,56 @@ section.section--flush {
   }
 
   .hero {
-    padding: 5rem 0 4rem;
+    padding: 4rem 0 3rem;
   }
 
   .hero__actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Achievement strip: 2 columns on mobile */
+  .achievements-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* Proof strip: 2 columns on mobile */
+  .proof-strip {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .proof-strip__item {
+    padding: 1.25rem 1rem;
+  }
+
+  .proof-strip__value {
+    font-size: 0.9375rem;
+  }
+
+  /* Strengths strip stacks label above tags */
+  .strengths-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* Work page hero nav links stack */
+  .work-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .capability-card {
+    padding: 1.25rem;
+  }
+
+  .capability-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .capability-row__label {
+    margin-bottom: 0;
   }
 
   .case-metrics {
@@ -1621,6 +1750,12 @@ section.section--flush {
   .footer__inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .footer__links {
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .contact-cta__actions {
@@ -1631,6 +1766,30 @@ section.section--flush {
   .strengths-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Pull quotes narrower on mobile */
+  .pull-quote {
+    padding: 1.5rem;
+  }
+
+  .pull-quote__text {
+    font-size: 1rem;
+  }
+
+  /* Lab track header */
+  .lab-track {
+    padding: 3rem 0;
+  }
+
+  /* About page photo constraint */
+  .about-hero__photo {
+    min-height: 260px;
+    max-height: 340px;
+  }
+
+  /* Section font sizes */
+  h1 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+  h2 { font-size: clamp(1.375rem, 5vw, 2rem); }
 }
 
 /* =====================
